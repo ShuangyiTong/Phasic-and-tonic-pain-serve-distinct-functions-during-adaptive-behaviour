@@ -1,10 +1,16 @@
-Codebase for https://www.biorxiv.org/content/10.1101/2025.02.10.637253v1
-
-Dataset too large, so full data has not been uploaded to Github at the moment
+Codebase for https://www.biorxiv.org/content/10.1101/2025.02.10.637253v2.full
 
 # How to reproduce figures from raw data
 
-Contact person: Shuangyi Tong \<shuangyi.tong@eng.ox.ac.uk>. Alternative emails: \<s9tong@edu.uwaterloo.ca>, \<shuangyi.tong@eng.ox.ac.uk>.
+Contact person: Shuangyi Tong \<shuangyi.tong@ndcn.ox.ac.uk>. Alternative email: \<s9tong@edu.uwaterloo.ca>
+
+## If you want to collect your own data, refer to this repository to download software and follow instructions to reproduce the experiment
+
+https://github.com/ShuangyiTong/PineappleStudy2025ReplicationSoftware
+
+## We also provide raw data to reproduce the figures
+
+Unzip RawData.7z in the datasets folder, and follow instructions below.
 
 ## System Requirements
 
@@ -12,11 +18,13 @@ Contact person: Shuangyi Tong \<shuangyi.tong@eng.ox.ac.uk>. Alternative emails:
 
 **Python version**: Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
 
-Required packages see `requirements.txt`. As of Feburary 2025, the only issue with up-to-date packages is the `pandas` package which they deprecated `append` function. So you need to install the specific version of `pandas` listed in the `requirements.txt`. Or you can fix the code by using `concat` function if you prefer newer pandas.
+Required packages see `requirements.txt`. As of Feburary 2025, the only issue with up-to-date packages is the `pandas` package which they deprecated `append` function. So you need to install the specific version of `pandas` listed in the `requirements.txt`. Or you can fix the code by using `concat` function if you prefer newer pandas. 
+
+You also need to install `cairosvg` if you are going to merge figures as described in the steps. But this is just for publication aesthetics purposes. So you can ignore these merge steps.
 
 **R version**: R version 4.4.2 (2024-10-31 ucrt) -- "Pile of Leaves", x86_64-w64-mingw32/x64
 
-Key user package required: `lmerTest`, `ggplot2`, `tidyverse`, `lazyeval`, `rstatix`, `car`, `broom.mixed`, `ez`, `generics`.
+Key user package required: `lmerTest`, `ggplot2`, `tidyverse`, `lazyeval`, `rstatix`, `car`, `broom.mixed`, `ez`, `generics`. Make sure `rscript` has been added to the environment variables.
 
 ## Steps by figures
 
@@ -30,15 +38,15 @@ python plot_trajectory_heatmap.py
 
 **Figure 2**: 
 
-Panel (i) 
+Panel A
 ```
 python ratings_vs_pain_choice_bias.py
 ```
-Panel (ii)
+Panel B
 ```
 python distance_compare.py Expt2
 ```
-Panel (iii)
+Panel CDEFG
 ```
 # First fit the model
 python old_model_fast.py Expt2
@@ -52,11 +60,11 @@ python stitch_helper.py expt2
 
 **Figure 3**:
 
-Panel (i)
+Panel A
 ```
 python GSR_plots.py Expt2
 ```
-Panel (ii)
+Panel BC
 ```
 python GSR_fit.py Expt2
 ```
@@ -67,11 +75,11 @@ python stitch_helper.py gsr
 
 **Figure 4**:
 
-Panel (i)
+Panel AB
 ```
 python pain_condition_vs_ratings.py
 ```
-Panel (ii)
+Panel CDE
 ```
 python choice_probability_tonic_vs_no_tonic.py
 ```
@@ -94,11 +102,11 @@ python moving_speed_trajectory_collection_rate.py
 
 Fitted results have been placed under model_fitting_results. If you want to run the model-fitting yourself, please refer to the model-fitting section. 
 
-Panel (i)
+Panel AB
 ```
 python Expt4_model_fitting_plot_vigour.py
 ```
-Panel (ii)
+Panel CDE
 ```
 python Expt4_model_fitting_plot_phasic.py
 ```
@@ -113,11 +121,11 @@ Generate spectral fit
 ```
 python eeg_with_lmm.py Expt4 surface
 ```
-Panel (i)
+Panel A
 ```
 python topography_replot.py
 ```
-Panel (ii) (rerun by change quantities = 'tonic' to quantities = 'vigour_constant')
+Panel B (rerun by change quantities = 'tonic' to quantities = 'vigour_constant')
 ```
 python topography_replot.py
 ```
